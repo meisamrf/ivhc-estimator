@@ -1,10 +1,13 @@
 from distutils.core import setup, Extension
 
-
+libname = 'ivhc'
+if platform.system()=='Darwin':
+     libname = 'ivhc.mac'
+	 
 module = Extension('ivhc',
                     sources = ['ivhcNoiseEst.cpp'],
                     include_dirs = [],
-                    libraries = ['ivhc'],
+                    libraries = [libname],
                     library_dirs = ['/usr/local/lib', './'],                    
                     extra_compile_args=['-std=c++11'])
  
