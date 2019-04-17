@@ -1,5 +1,7 @@
 from distutils.core import setup, Extension
 
+import platform
+
 libname = 'ivhc'
 if platform.system()=='Darwin':
      libname = 'ivhc.mac'
