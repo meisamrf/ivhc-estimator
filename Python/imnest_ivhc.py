@@ -39,14 +39,16 @@ def imnest_ivhc(image, max_poly_deg=5):
 
 # parse input parameters 
     if type(image) != np.ndarray:
-        print('error in image type')
-        return None
+       image = np.array(image)
 
     if image.ndim == 3:
         ycbcr = skimage.color.rgb2ycbcr(image)
         gray_image = np.float32(ycbcr[:,:,0])
-    else:
+    elif image.ndim == 2:
         gray_image = image
+    else:
+        print('error in image type')
+        return None
 
     if gray_image.dtype == np.uint8:
         gray_image = np.float32(gray_image)
