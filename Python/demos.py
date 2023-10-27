@@ -45,7 +45,7 @@ def demo_ppn_iso():
             noise = sigma_a*np.random.randn(img.shape[0], img.shape[1])
             noise = skimage.filters.gaussian(noise, sigma=sigma_GB, mode='reflect')
             noise_std = np.std(noise)
-            im_n = np.float32(img) + np.float32(noise)
+            im_n = np.float32(img[:,:,0]) + np.float32(noise)
             [est_sigma_p, est_sigma_o, nlf] = imnest_ivhc(im_n, 0)
             est_error = np.abs(noise_std-est_sigma_p)
             est_error = abs(noise_std-est_sigma_p)
@@ -69,7 +69,7 @@ def demo_ppn_aniso():
             noise = sigma_a*np.random.randn(img.shape[0], img.shape[1])
             noise = bilateral_flt(noise, sigma_a*sigma_a*scale, 1, 1)
             noise_std = np.std(noise)
-            im_n = np.float32(img) + np.float32(noise)
+            im_n = np.float32(img[:,:,0]) + np.float32(noise)
             [est_sigma_p, est_sigma_o, nlf] = imnest_ivhc(im_n, 0)
             est_error = np.abs(noise_std-est_sigma_p)
             est_error = abs(noise_std-est_sigma_p)
@@ -91,7 +91,7 @@ def demo_awgn():
     for sigma_a in [5, 10, 15]:
         noise = sigma_a*np.random.randn(img.shape[0], img.shape[1])
         noise_std = np.std(noise)
-        im_n = np.float32(img) + np.float32(noise)
+        im_n = np.float32(img[:,:,0]) + np.float32(noise)
         [est_sigma_p, est_sigma_o, nlf] = imnest_ivhc(im_n, 0)
         est_error = np.abs(noise_std-est_sigma_p)
         print('------------------------')
@@ -108,9 +108,9 @@ def demo_pgn():
     sigma_noise = 8
     nlf_sqrt = sigma_noise*(.4+np.arange(0, 256)/255.0)
     nlf = nlf_sqrt**2
-    noise = np.random.randn(img.shape[0], img.shape[1])*nlf_sqrt[np.int32(img)]
+    noise = np.random.randn(img.shape[0], img.shape[1])*nlf_sqrt[np.int32(img[:,:,0])]
     # generate noisy image
-    im_n = np.float32(img) + np.float32(noise)
+    im_n = np.float32(img[:,:,0]) + np.float32(noise)
 
     [est_sigma_p, est_sigma_o, est_var_nlf] = imnest_ivhc(im_n)
 

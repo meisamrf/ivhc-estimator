@@ -36,12 +36,13 @@ The repository includes:
 
 Python Installation
 1. Install dependencies
-	pip3 install package [numpy, skimage, ...]
+	pip3 install package [numpy, scikit-mage, ...]
 2. Run setup from the libs directory
 python3 setup.py install
 optional:
-	run "python3 setup.py build" and copy .so (linux) or .pyd (windows) file to the demos.py path
-	or if you have python3.6 copy "ivhc.cpython-36m-x86_64-linux-gnu.so" (linux) or "ivhc.cp36-win_amd64.pyd" (windows) to your demos.py path.
+	- run "python3 setup.py build" and copy .so (linux) or .pyd (windows) file to the demos.py path
+	- if you have python3.9 copy "ivhc.cpython-39m-x86_64-linux-gnu.so" (linux) or "ivhc.cp39-win_amd64.pyd" 
+	- if you have python3.10 copy "ivhc.cpython-310m-x86_64-linux-gnu.so" (linux) or "ivhc.cp310-win_amd64.pyd" (windows) to your demos.py path.
 
 3. Run demos.py:
 *python3 demos.py*
